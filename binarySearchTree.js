@@ -14,6 +14,20 @@ const insertNode = (tree, value) => {
   return tree;
 };
 
+const search = (tree, value) => {
+  if (tree == null) {
+    console.log(value, ' not found in tree');
+    return;
+  }
+  if (tree.value == value) {
+    console.log(value, ' found in tree');
+  } else if (tree.value < value) {
+    search(tree.right, value);
+  } else {
+    search(tree.left, value);
+  }
+};
+
 const printInorder = (tree) => {
   if (tree == null) {
     return;
@@ -56,6 +70,11 @@ const main = () => {
   printPreorder(tree);
   console.log('Postorder of tree');
   printPostorder(tree);
+
+  search(tree, 15);
+  search(tree, 10);
+  search(tree, 5);
+  search(tree, 55);
 };
 
 main();
