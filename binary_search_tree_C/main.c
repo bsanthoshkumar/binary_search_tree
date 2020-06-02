@@ -16,5 +16,11 @@ int main(void)
   print_preorder(tree);
   printf("\nPostorder traversal: ");
   print_postorder(tree);
+  printf("\n");
+
+  search_node(tree, 15);
+  search_node(tree, 10);
+  search_node(tree, 5);
+  search_node(tree, 55);
   return 0;
 }
