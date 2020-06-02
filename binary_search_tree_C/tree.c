@@ -13,16 +13,33 @@ Node_ptr insert_node(Node_ptr tree, int value)
 {
   if (tree == NULL)
   {
-    return create_node(value);
+    tree = create_node(value);
+    return tree;
   }
-  if (tree->value < value)
+  Node_ptr current = tree;
+  Node_ptr previous = current;
+  while (current != NULL)
   {
-    tree->right = insert_node(tree->right, value);
+    if (tree->value < value)
+    {
+      previous = current;
+      current = current->right;
+    }
+    else
+    {
+      previous = current;
+      current = current->left;
+    }
+  }
+  if (previous->value < value)
+  {
+    previous->right = create_node(value);
   }
   else
   {
-    tree->left = insert_node(tree->left, value);
+    previous->left = create_node(value);
   }
+
   return tree;
 }
 
