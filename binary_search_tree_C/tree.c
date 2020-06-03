@@ -76,23 +76,39 @@ void print_postorder(Node_ptr tree)
   printf("%d ", tree->value);
 }
 
-void search_node(Node_ptr tree, int value)
+Bool search_node(Node_ptr tree, int value)
 {
-  if (tree == NULL)
+  Bool flag = False;
+  Node_ptr current = tree;
+  while (current != NULL)
   {
-    printf("%d not found in tree\n", value);
-    return;
+    if (current->value == value)
+    {
+      flag = True;
+      break;
+    }
+    else if (current->value < value)
+    {
+      current = current->right;
+    }
+    else
+    {
+      current = current->left;
+    }
   }
-  if (tree->value == value)
+
+  return flag;
+}
+
+void search(Node_ptr tree, int value)
+{
+
+  if (search_node(tree, value) == True)
   {
     printf("%d found in tree\n", value);
   }
-  else if (tree->value < value)
-  {
-    search_node(tree->right, value);
-  }
   else
   {
-    search_node(tree->left, value);
+    printf("%d not found in tree\n", value);
   }
 }
