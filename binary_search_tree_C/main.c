@@ -2,13 +2,13 @@
 
 int main(void)
 {
-  Node_ptr tree = insert_node(NULL, 15);
-  insert_node(tree, 10);
-  insert_node(tree, 13);
+  Node_ptr tree = insert_node(NULL, 10);
+  insert_node(tree, 5);
+  insert_node(tree, 20);
   insert_node(tree, 25);
-  insert_node(tree, 19);
-  insert_node(tree, 28);
-  insert_node(tree, 7);
+  insert_node(tree, 8);
+  insert_node(tree, 1);
+  insert_node(tree, 15);
 
   printf("Inorder traversal: ");
   print_inorder(tree);
@@ -16,11 +16,17 @@ int main(void)
   print_preorder(tree);
   printf("\nPostorder traversal: ");
   print_postorder(tree);
-  printf("\n");
+  printf("\n\n");
 
-  search(tree, 15);
-  search(tree, 10);
-  search(tree, 5);
-  search(tree, 55);
+  search_node(tree, 15);
+  search_node(tree, 10);
+  search_node(tree, 55);
+
+  printf("\n");
+  printf("Inorder traversal: ");
+  print_inorder(tree);
+  delete_node(tree, 10);
+  printf("Inorder traversal: ");
+  print_inorder(tree);
   return 0;
 }

@@ -20,7 +20,7 @@ Node_ptr insert_node(Node_ptr tree, int value)
   Node_ptr previous = current;
   while (current != NULL)
   {
-    if (tree->value < value)
+    if (current->value < value)
     {
       previous = current;
       current = current->right;
@@ -76,7 +76,7 @@ void print_postorder(Node_ptr tree)
   printf("%d ", tree->value);
 }
 
-Bool search_node(Node_ptr tree, int value)
+Bool search(Node_ptr tree, int value)
 {
   Bool flag = False;
   Node_ptr current = tree;
@@ -100,10 +100,10 @@ Bool search_node(Node_ptr tree, int value)
   return flag;
 }
 
-void search(Node_ptr tree, int value)
+void search_node(Node_ptr tree, int value)
 {
 
-  if (search_node(tree, value) == True)
+  if (search(tree, value) == True)
   {
     printf("%d found in tree\n", value);
   }
@@ -111,4 +111,49 @@ void search(Node_ptr tree, int value)
   {
     printf("%d not found in tree\n", value);
   }
+}
+
+Node_ptr find_minimum(Node_ptr tree)
+{
+  if (tree->left == NULL)
+  {
+    return tree;
+  }
+  return find_minimum(tree->left);
+}
+
+Node_ptr delete_node(Node_ptr tree, int value)
+{
+  if (tree == NULL)
+  {
+    return tree;
+  }
+  if (tree->value < value)
+  {
+    tree->right = delete_node(tree->right, value);
+    return tree;
+  }
+  if (tree->value > value)
+  {
+    tree->left = delete_node(tree->left, value);
+    return tree;
+  }
+
+  if (tree->left == NULL)
+  {
+    Node_ptr temp = tree->right;
+    free(tree);
+    return temp;
+  }
+  else if (tree->right == NULL)
+  {
+    Node_ptr temp = tree->left;
+    free(tree);
+    return temp;
+  }
+
+  Node_ptr min_node = find_minimum(tree->right);
+  tree->value = min_node->value;
+  tree->right = delete_node(tree->right, min_node->value);
+  return tree;
 }

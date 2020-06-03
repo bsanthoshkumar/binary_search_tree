@@ -22,7 +22,7 @@ Node_ptr insert_node(Node_ptr, int);
 void print_inorder(Node_ptr);
 void print_preorder(Node_ptr);
 void print_postorder(Node_ptr);
-Bool search_node(Node_ptr, int);
-void search(Node_ptr, int);
+void search_node(Node_ptr, int);
+Node_ptr delete_node(Node_ptr, int);
 
 #endif
