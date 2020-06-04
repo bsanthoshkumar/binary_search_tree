@@ -145,7 +145,7 @@ Node_ptr delete_node(Node_ptr tree, int value)
     free(tree);
     return temp;
   }
-  else if (tree->right == NULL)
+  if (tree->right == NULL)
   {
     Node_ptr temp = tree->left;
     free(tree);
