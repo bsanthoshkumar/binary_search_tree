@@ -18,6 +18,14 @@ typedef enum
   True
 } Bool;
 
+typedef struct
+{
+  Node_ptr *nodes;
+  int length;
+} Array_of_nodes;
+
+typedef Array_of_nodes *Array_of_nodes_ptr;
+
 Node_ptr insert_node(Node_ptr, int);
 void print_inorder(Node_ptr);
 void print_preorder(Node_ptr);
@@ -26,5 +34,6 @@ void search_node(Node_ptr, int);
 Node_ptr delete_node(Node_ptr, int);
 Node_ptr rotate_right(Node_ptr, Node_ptr);
 Node_ptr rotate_left(Node_ptr, Node_ptr);
+Node_ptr balance_tree(Node_ptr);
 
 #endif

@@ -213,3 +213,62 @@ Node_ptr rotate_left(Node_ptr tree, Node_ptr pivot)
 
   return temp;
 }
+
+void find_length_of_tree(Node_ptr tree, int *length)
+{
+  if (tree == NULL)
+  {
+    return;
+  }
+  find_length_of_tree(tree->left, length);
+  (*length)++;
+  find_length_of_tree(tree->right, length);
+}
+
+Array_of_nodes_ptr create_array(int length)
+{
+  Array_of_nodes_ptr array_of_nodes = malloc(sizeof(Array_of_nodes));
+  array_of_nodes->length = length;
+  array_of_nodes->nodes = malloc(sizeof(Node_ptr) * array_of_nodes->length);
+  return array_of_nodes;
+}
+
+void store_nodes_in_array(Node_ptr tree, Array_of_nodes_ptr array_of_nodes, int *index)
+{
+  if (tree == NULL)
+  {
+    return;
+  }
+  store_nodes_in_array(tree->left, array_of_nodes, index);
+  array_of_nodes->nodes[(*index)] = tree;
+  (*index)++;
+  store_nodes_in_array(tree->right, array_of_nodes, index);
+}
+
+Node_ptr balance(Array_of_nodes_ptr array_of_nodes, int start, int end)
+{
+  if (start > end)
+  {
+    return NULL;
+  }
+
+  int pivot = (start + end) / 2;
+  Node_ptr tree = array_of_nodes->nodes[pivot];
+  tree->left = balance(array_of_nodes, start, pivot - 1);
+  tree->right = balance(array_of_nodes, pivot + 1, end);
+
+  return tree;
+}
+
+Node_ptr balance_tree(Node_ptr tree)
+{
+  int length = 0;
+  find_length_of_tree(tree, &length);
+  Array_of_nodes_ptr array_of_nodes = create_array(length);
+
+  int start = 0;
+  store_nodes_in_array(tree, array_of_nodes, &start);
+
+  tree = balance(array_of_nodes, 0, array_of_nodes->length - 1);
+  return tree;
+}
