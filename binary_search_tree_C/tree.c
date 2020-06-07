@@ -270,5 +270,8 @@ Node_ptr balance_tree(Node_ptr tree)
   store_nodes_in_array(tree, array_of_nodes, &start);
 
   tree = balance(array_of_nodes, 0, array_of_nodes->length - 1);
+  free(array_of_nodes->nodes);
+  free(array_of_nodes);
+
   return tree;
 }
