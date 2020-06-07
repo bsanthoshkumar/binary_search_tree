@@ -10,9 +10,17 @@ int main(void)
   insert_node(tree, 8);
   insert_node(tree, 1);
 
+  printf("\nbefore right rotate: ");
   print_preorder(tree);
   rotate_right(tree, tree->left);
-  printf("\n");
+  printf("\nafter right rotate: ");
   print_preorder(tree);
+
+  printf("\nbefore left rotate: ");
+  print_preorder(tree);
+  rotate_left(tree, tree->left);
+  printf("\nafter left rotate: ");
+  print_preorder(tree);
+
   return 0;
 }

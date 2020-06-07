@@ -185,3 +185,31 @@ Node_ptr rotate_right(Node_ptr tree, Node_ptr pivot)
 
   return temp;
 }
+
+Node_ptr rotate_left(Node_ptr tree, Node_ptr pivot)
+{
+  if (tree == NULL)
+  {
+    return tree;
+  }
+  if (tree->value < pivot->value)
+  {
+    tree->right = rotate_left(tree->right, pivot);
+    return tree;
+  }
+  if (tree->value > pivot->value)
+  {
+    tree->left = rotate_left(tree->left, pivot);
+    return tree;
+  }
+
+  Node_ptr temp = pivot->right;
+  if (pivot == NULL)
+  {
+    return tree;
+  }
+  pivot->right = temp->left;
+  temp->left = pivot;
+
+  return temp;
+}
