@@ -24,5 +24,6 @@ void print_preorder(Node_ptr);
 void print_postorder(Node_ptr);
 void search_node(Node_ptr, int);
 Node_ptr delete_node(Node_ptr, int);
+Node_ptr rotate_right(Node_ptr, Node_ptr);
 
 #endif

@@ -157,3 +157,31 @@ Node_ptr delete_node(Node_ptr tree, int value)
   tree->right = delete_node(tree->right, min_node->value);
   return tree;
 }
+
+Node_ptr rotate_right(Node_ptr tree, Node_ptr pivot)
+{
+  if (tree == NULL)
+  {
+    return tree;
+  }
+  if (tree->value < pivot->value)
+  {
+    tree->right = rotate_right(tree->right, pivot);
+    return tree;
+  }
+  if (tree->value > pivot->value)
+  {
+    tree->left = rotate_right(tree->left, pivot);
+    return tree;
+  }
+
+  Node_ptr temp = pivot->left;
+  if (pivot == NULL)
+  {
+    return tree;
+  }
+  pivot->left = temp->right;
+  temp->right = pivot;
+
+  return temp;
+}
